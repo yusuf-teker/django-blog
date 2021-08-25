@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import KategoriModel,YazilarModel,YorumModel
+from blog.models import KategoriModel,YazilarModel,YorumModel,IletisimModel
 # Register your models here.
 admin.site.register(KategoriModel)
 
@@ -24,3 +24,12 @@ class YorumAdmin(admin.ModelAdmin):
         #sqlite tablosunde aut_user'a baglı -> auth_user tablsounun icindeki username'a gore arama yapıcaz -> __username
 
 admin.site.register(YorumModel,YorumAdmin)
+
+    
+class IletisimAdmin(admin.ModelAdmin):
+    list_display= ('isim_soyisim','olusturulma_tarihi'  )
+    search_fields = ('email',)
+        #yorum modleinde yazan degiskenini User ile iliskilendirmistik -> User'da databasede auth_user'ı temsil ediyor gibi birşey
+        #sqlite tablosunde aut_user'a baglı -> auth_user tablsounun icindeki username'a gore arama yapıcaz -> __username
+
+admin.site.register(IletisimModel,IletisimAdmin)
