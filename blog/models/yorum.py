@@ -1,3 +1,4 @@
+from account.models import CustomUserModel
 from enum import auto
 from django.db import models
 from django.contrib.auth.models import User
@@ -8,7 +9,7 @@ from blog.models import YazilarModel #->Yazi modelimiz
 
 class YorumModel(models.Model):
     #Her yorum bir yazarla iliskili o iliskiyi kuralım -> User üzerinden yorumu yazana erisebilmek icin
-    yazan = models.ForeignKey(User, on_delete=CASCADE,related_name='yorum')
+    yazan = models.ForeignKey('account.CustomUserModel', on_delete=CASCADE,related_name='yorum')
         #Yazar silinirse yorumda silinir
         #yazanin yorumlarına ulaskmak icin related_name yorum
 

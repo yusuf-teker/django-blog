@@ -20,7 +20,7 @@ class YazilarModel(models.Model):
         #Bir yazi birden cok kategoride olabilir o yüzden ManyToManyField
     resim = models.ImageField(upload_to = 'yazi_resimleri')
         #resimler yazi_resimleri  adında biyerde tutulacka
-    yazar = models.ForeignKey(User, on_delete=models.CASCADE,  related_name="yazilar")
+    yazar = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE,  related_name="yazilar")
         #Bir yazardan birden cok yaziya ulasabiliriz
         #on_delete=models.CASCADE, Egerki yazar silinirse onunla ilgili tüm yazilar silinir
 
