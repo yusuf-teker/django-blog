@@ -5,15 +5,21 @@ from blog.models import KategoriModel
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
     #Sekilli yazilar icim RichTextField
+from blog.abstract_models import DateAbstractModel
+    #Soyut sınıf olusturup bunu kullandık
 
-
-class YazilarModel(models.Model):
+class YazilarModel(DateAbstractModel):
     baslik = models.CharField(max_length=50)
     icerik = RichTextField() #models.TextField() yerine RichTextField kullanarak tema olarak ayarlanabilir bir metin alanı yaptık
-    olusturulma_tarihi = models.DateTimeField(auto_now_add=True)
+
+    #Soyut Model kullandıgımız icin bunları orda tanımladık
+    #olusturulma_tarihi = models.DateTimeField(auto_now_add=True)
         #auto_now_add -> Yazilar tablomuzda bir kayıt olusturuldugunda olusturulma_tarihi otomatik olusutulup eklenecek
-    duzenlenme_tarihi =  models.DateTimeField(auto_now=True)
+    #duzenlenme_tarihi =  models.DateTimeField(auto_now=True)
         #Yazilar tablosundaki icerik her degistiginde duzenlenme tarih alanı degistirdigimiz tarih olacak
+
+
+
     slug = AutoSlugField(populate_from = 'baslik', unique = True)
         #slugı baslik degiskeninden otomatik olustur    
     kategoriler = models.ManyToManyField(KategoriModel, related_name='yazi')

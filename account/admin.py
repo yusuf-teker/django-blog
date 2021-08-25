@@ -5,9 +5,11 @@ from django.contrib.auth.admin import UserAdmin
 
 from account.models import CustomUserModel
 
+
+
+
+@admin.register(CustomUserModel) #Decorator ile register ! Admin classının hemen üstünde olmalı !
 class CustomAdmin(UserAdmin): #UserAdmin'e gidip bakabiliriz oda admin.ModelAdmin'i parametre olarak alıyor
-    #model'ı override ediyoruz
-    model = CustomUserModel
     list_display = ('username', 'email')
     #Avatarı eklemek için UserAdmin icindeki fieldSetlerle beraber kendi fieldımızıda ekliyeceğiz  
     # yani fielseti override ediyoruz ama eskilerinide alıyoruz
@@ -17,4 +19,5 @@ class CustomAdmin(UserAdmin): #UserAdmin'e gidip bakabiliriz oda admin.ModelAdmi
         }),)
     
 
-admin.site.register(CustomUserModel, CustomAdmin)
+#admin.site.register(CustomUserModel, CustomAdmin)
+#Bunu Yerine Decorator kullancaz

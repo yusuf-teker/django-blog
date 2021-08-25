@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from blog.models import YazilarModel #->Yazi modelimiz
 
+from blog.abstract_models import DateAbstractModel
 
-
-class YorumModel(models.Model):
+class YorumModel(DateAbstractModel):
     #Her yorum bir yazarla iliskili o iliskiyi kuralım -> User üzerinden yorumu yazana erisebilmek icin
     yazan = models.ForeignKey('account.CustomUserModel', on_delete=CASCADE,related_name='yorum')
         #Yazar silinirse yorumda silinir
@@ -20,9 +20,13 @@ class YorumModel(models.Model):
     #Yorum icinde TextField olusturuyoruz
     yorum = models.TextField()
 
-    olusturulma_tarihi = models.DateTimeField(auto_now_add=True) #Olusturuldugu tarihi al
-    duzenlenme_tarihi = models.DateTimeField(auto_now=True) #Her güncellendiğinde tekrar tarihi al 
+#    olusturulma_tarihi = models.DateTimeField(auto_now_add=True) #Olusturuldugu tarihi al
+#    duzenlenme_tarihi = models.DateTimeField(auto_now=True) #Her güncellendiğinde tekrar tarihi al 
+#    BUNLAR YERINE ABSTRACT CLASS KULLANDIK VE KALITIMLA KENDINDEN VARLAR ARTIK
 
+
+
+     
     class Meta:
         db_table =  'yorum' #yorum adında bir tablo
         verbose_name = 'Yorum' #admin panelinde güzel görüntü icin
