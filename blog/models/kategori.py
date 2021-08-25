@@ -15,10 +15,10 @@ class KategoriModel(models.Model):
 
         #Kategori listesinin en üstündeki Baslık Select kategori models to change olarak
         verbose_name = "kategori" 
-            
+
     #Admin panelinde objenin türü/adı yazıyor
     #Ordaki ismin düzgün gözükmesi icin classın isim degiskenini objenin türü/ismi yapıyoruz  
-    #KARGEORI MODEL altındaki listedeki elemanların ismi
+    #KARGEORI MODEL altındaki listedeki elemanların ismi    
     def __str__(self):
         return self.isim
 
