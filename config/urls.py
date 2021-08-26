@@ -1,21 +1,28 @@
-"""config URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+    #include sayesinde config dısındaki diğer applerde olusturulan urls.py dosyasındaki pathlerle bir nevi iletisim kurulacak
+from blog.views import iletisim
+
+
+from django.conf.urls.static import static
+    #medya dosyalarını yayınlamamızı saglayan fonksiyon
+from django.conf import settings
+    #MEDIA_URL VE MEDIA_ROOT a ulaskmak icin
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('',include('blog.urls'))
+        #Birisi /blog/ + (blog.urls icindeki birşey örnegin 'iletisim' kısmı yazarsa) path('ietisim', iletisim) -> iletisim fonksiyonunu çağırıyor
+            #blog icindeki urls icindeki path icindeki iletisim fonksiyonunuda blog icindeki views icinde iletisim.py adındaki kolasörden import ediyoruz
+        #include sayesinde blog.urls içindeki tüm pathleri girmiş gibi olduk
+        
+        #www.yusufteker/blog/ (iletisim veya  ileride baska urls ler olusturursak o geleck)
+        #'blog/' yerine '' bos bırakırsak www.yusufteker/iletisim seklinde girilebilir
+            # path('',include('blog.urls'))
+] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+        #1.parametrenin karsılığı /media/ yani /media/ kısmından sonraki kısım girilicek
+        #2.parametre url'lerin kaynagı neerede
