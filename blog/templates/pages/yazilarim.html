@@ -1,31 +1,32 @@
 {% extends 'base.html' %}
-{% block title %}Anasayfa{% endblock %} 
+{% block title %} Yazilarim {% endblock %}  <!--title sekmenin üstünde yazan yer-->
 
-{% block content %}<!-- CARDLARIMIZ-->
-
-{% for yazi in yazilar %}
-<div class="card mb-3">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{ yazi.resim.url }}" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ yazi.baslik }}</h5>
-        <p class="card-text">{{ yazi.icerik|safe|truncatechars_html:150 }}</p> 
-          <!--safe ekleyince editor kaynaklı<p> gibi şeyler çıkmasını engelliyor-->
-            <!--truncatechars_html:150 ilk 150 kelimeyi gösterir sonrasını .. olarak gosterir-->
-        <p class="card-text"><small class="text-muted">{{ yazi.duzenlenme_tarihi }}</small></p>
-            <!-- |timesince eklersek tarih yerine ne kadar süre geçmiş onu gösterir-->
-      </div>
-    </div>
-  </div>
-</div>
-{% empty %}
-<p>Hiç Yazı Bulunamadı</p>
-
-{% endfor %}
+{% block content %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Başlık</th>
+        <th scope="col">Güncellenme Tarihi</th>
+        <th scope="col">Aksiyon</th>
+      </tr>
+    </thead>
+    {% for yazi in yazilar %}
+    <tbody> 
+      <tr>
+        <th scope="row">{{ yazi.id }}</th>
+        <td>{{ yazi.baslik }}</td>
+        <td>{{ yazi.duzenlenme_tarihi }}</td>
+        <td>-Aksiyonlar Eklenecek-</td>  
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+ 
   
+  
+    
+
 
 
 
