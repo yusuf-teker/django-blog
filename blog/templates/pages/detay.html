@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}{{ yazi.baslik }}{% endblock %} 
+{% load static %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ yazi.resim.url }}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{yazi.baslik}}</h5>
+        <p class="card-text">{{ yazi.icerik|safe }}</p> 
+          <!--safe ekleyince editor kaynaklı<p> gibi şeyler çıkmasını engelliyor-->
+            <!--truncatechars_html:150 ilk 150 kelimeyi gösterir sonrasını .. olarak gosterir-->
+        <p class="card-text"><small class="text-muted">{{ yazi.duzenlenme_tarihi }}</small></p>
+            <!-- |timesince eklersek tarih yerine ne kadar süre geçmiş onu gösterir-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<h5>Yorumlar</h5>
+
+{% for yorum in yorumlar %} <!--detay.py de context içinde yorumları gönderdim-->
+<div class="card">
+    <div class="card-body" style="display:flex;flex-direction: row;">
+      <div>
+        {% if yorum.yazan.avatar %} <!--yorum icinde yazan var o yazan kisinin avatarı varmı-->
+            <img src="{{ yorum.yazan.avatar.url }}"  class="rounded" class="pt-4" width="75px" height="75px">
+        {% else %}
+            <img src="{% static 'img/no-avatar.jpg' %}"  class="rounded" class="pt-4" width="75px" height="75px">
+        {% endif %} 
+      </div>
+      <div style=margin-left:15px;>
+        <h5 class="card-title">{{ yorum.yazan.username }}</h5>
+        <p class="card-text">{{ yorum.yorum }} </p>
+      </div>
+    </div>
+</div>
+{% empty %}
+<div style=margin-left:15px;>
+    <p class="card-text">Hiç yorum yok.</p>
+</div>
+{% endfor %}
+
+  {% endblock %} 

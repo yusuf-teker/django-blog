@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'blog',
     #3.parti applerim
     'ckeditor',
+    'crispy_forms',
     
 ]
 
@@ -122,3 +123,5 @@ MEDIA_URL = '/media/'
     
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
     #media dosyamızın konumu, base_dir manage.py'in oldugu klasör
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
