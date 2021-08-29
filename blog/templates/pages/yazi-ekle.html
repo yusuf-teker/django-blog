@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %} <!--güzel arayüz için-->
+
+{% block title %}Yazı Ekle{% endblock %} 
+
+{% block content %} 
+<form action = "{% url 'yazi-ekle' %}" method="POST" enctype = "multipart/form-data">{% csrf_token %} <!-- bu form bir request gönderir -->
+    <!-- Form ile FOTOGRAF GONDERMEK ICIN  form'a elemnent olarak enctype = "multipart/from-data"-->
+    {{ form|crispy}} <!-- crispy ile GUZEL BIR GORUNUM ELDE ETME-->
+
+    {{ form.media  }}  <!--CKEDITOR ISTERSEK-->
+    <input type="submit" value="Yazı Oluştur" class="btn btn-danger mt-3 mb-3"> <!-- Gönder buton üzerindeki isim -->
+   
+</form>
+        
+{% endblock %}
+  
