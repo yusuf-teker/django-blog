@@ -4,6 +4,10 @@ from blog.forms import YorumEkleModelForm, yorum_ekle
 from django.contrib import messages
 from django.views import View #Viewlarımızı class-based sınıf yapma
 
+import logging #Logging islemleri
+
+logger = logging.getLogger('konu_okuma') #Logger'a isim veriyoruz - konu_okuma
+    #artık istediğimiz seviyede loggerı istedigimiz yere bırakabiliriz
 
 class DetayView(View):
 
@@ -13,6 +17,10 @@ class DetayView(View):
     #GET icin ayrı 
     def get(self, request, slug):
         yazi = get_object_or_404(YazilarModel,slug = slug)
+         
+        if request.user.is_authenticated :
+            logger.info('konu koundu:'+request.user.username) #LOG EKLENDI
+
         yorumlar = yazi.yorumlar.all()
         return render(request, 'pages/detay.html', context = {
         'yazi': yazi,

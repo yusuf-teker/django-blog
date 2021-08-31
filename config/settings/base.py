@@ -121,3 +121,33 @@ EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD') #past the key or password app here
 EMAIL_PORT = 587
 EMAIL_USE_TLS  = True
 DEFAULT_FROM_EMAIL = 'y.teker.1907.1907@gmail.com'
+
+
+
+#LOGGING
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers':False, #jangonun default icindeki loggerları kaldırma
+    'formatters': { #belli bir formatta log almak istersek
+        'basit_ifade': {
+            'format':'{asctime} {levelname} {message} {name}',
+            'style': '{'
+        }
+    },
+    'handlers':{
+        'console':{
+            'class':'logging.StreamHandler'
+        },
+        'file':{ #Dosyaya yazdırmak istersek
+            'class': 'logging.FileHandler',
+            'filename': 'logs/konu_okuma.log',
+            'formatter': 'basit_ifade'
+        }
+    },    
+    'loggers': {
+        'konu_okuma': {
+            'handlers': ['console','file'],
+            'level': 'INFO'
+        }
+    }
+}
