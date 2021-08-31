@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}{{ yazi.baslik }}{% endblock %} 
 {% load static %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="card mb-3">
   <div class="row g-0">
@@ -10,11 +10,24 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{yazi.baslik}}</h5>
-        <p class="card-text">{{ yazi.icerik|safe }}</p> 
+        <h5 class="card-title">{{yazi.baslik}}</h5>                       <!--BAŞLIK -->
+        <p class="card-text">{{ yazi.icerik|safe }}</p>                   <!--İÇERİK -->
           <!--safe ekleyince editor kaynaklı<p> gibi şeyler çıkmasını engelliyor-->
             <!--truncatechars_html:150 ilk 150 kelimeyi gösterir sonrasını .. olarak gosterir-->
-        <p class="card-text"><small class="text-muted">{{ yazi.duzenlenme_tarihi }}</small></p>
+        <p class="card-text">
+          <small class="text-muted">
+            {{ yazi.duzenlenme_tarihi }}           <!--SON GUNCELLEME TARIHI --> <br>
+            Yazar: <a href="{% url 'profil' username=yazi.yazar.username %}">{{yazi.yazar.username}}</a>   
+                
+            {% if request.user == yazi.yazar %}
+            <p>
+              <a class="btn btn-primary" href="{% url 'yazi-guncelle' slug=yazi.slug %}">Düzenle</a>
+              <a class="btn btn-danger" href="{% url 'yazi-sil' slug=yazi.slug %}">Sil</a>
+            </p>
+           {% endif %}
+            
+          </small>
+        </p>
             <!-- |timesince eklersek tarih yerine ne kadar süre geçmiş onu gösterir-->
       </div>
     </div>
@@ -22,6 +35,23 @@
 </div>
 
 <h5>Yorumlar</h5>
+
+
+{% if request.user.is_authenticated %}  <!-- YORUM EKLEME -->
+<form action="" method="POST"> {% csrf_token %}  
+{{ yorum_ekle_form|crispy }}
+  
+  <input type="submit" value="Yorum Yap" class="btn btn-danger mt-3 mb-3">
+
+
+</form>
+
+{% else %}
+<p>Yorum yapabilmek için lütfen üye girişi yapınız.</p>
+{% endif %}
+
+  {% include 'components/message.html' %}
+
 
 {% for yorum in yorumlar %} <!--detay.py de context içinde yorumları gönderdim-->
 <div class="card">
@@ -36,6 +66,12 @@
       <div style=margin-left:15px;>
         <h5 class="card-title">{{ yorum.yazan.username }}</h5>
         <p class="card-text">{{ yorum.yorum }} </p>
+        
+        {% if yorum.yazan == request.user or request.user == yazi.yazar %}
+          <p><a href="{% url 'yorum-sil' id=yorum.id %}" class="btn btn-danger">Yorumu Sil</a></p>
+
+        {% endif %}
+          
       </div>
     </div>
 </div>

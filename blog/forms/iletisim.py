@@ -1,7 +1,25 @@
 from django import forms
-from django.forms import fields
+#from django.forms import fields
 #Not1: İstersek boostraptan form alabilriz
 from blog.models import IletisimModel
+from django.core.mail import send_mail #Mail göndermek icin
+
+
+class IletisimForm(forms.ModelForm):
+    class Meta:
+        model = IletisimModel 
+        fields = ('isim_soyisim' , 'email', 'mesaj') # İletisim modeli icinde hangi fieldları istiyoruz
+
+    def send_email(self,mesaj):
+        send_mail(
+            subject='İletişim Formundan Yeni Mesaj Var!',
+            message=mesaj,
+            from_email=None, # None ise settignsdeki default maili kullanır
+            recipient_list=['y.teker.1907.1907@gmail.com'],
+            fail_silently=False
+        )
+
+
 ###################################################################################
 #bu formu views icindeki iletisim de kullanacam
 #DJANGO FORMU
@@ -22,7 +40,3 @@ from blog.models import IletisimModel
 
 # YONTEM 2  FORM MODEL KULLANNIMI 
 
-class IletisimForm(forms.ModelForm):
-    class Meta:
-        model = IletisimModel 
-        fields = ('isim_soyisim' , 'email', 'mesaj') # İletisim modeli icinde hangi fieldları istiyoruz

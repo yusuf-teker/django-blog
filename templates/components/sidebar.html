@@ -7,21 +7,16 @@
       <div class="card-header">
         MENÜ
       </div>
-
-    <!--Kullanıcı Giriş Yapmış mı Yapmamış mı? -->
-      {% if request.user.is_authenticated %}
       <ul class="list-group list-group-flush"></ul>
-        <li class="list-group-item">Profili Düzenle</li>
-        <li class="list-group-item">Şifre Değiştir</li>
-        <li class="list-group-item">Yazı Ekle</li>
+        <li class="list-group-item"><a href="{% url 'profil-guncelle' %}">Profili Düzenle</a></li>
+        <li class="list-group-item"><a href="{% url 'sifre-degistir' %}">Şifre Değiştir</a> </li>
         <li class="list-group-item"><a href="{% url 'yazilarim' %}"> Yazılarım</a></li>
-        <li class="list-group-item">Çıkış Yap</li>
+        <li class="list-group-item"><a href="{% url 'yazi-ekle' %}">  Yazı Ekle</a></li>
+          <!--yazi-ekle html dosyaıs-->
+        <li class="list-group-item"><a href="{% url 'iletisim' %}">İletişim</a></li>
+        <li class="list-group-item"> <a href="{% url 'cikis' %}">Çıkış Yap</a> </li>
       </ul>
-      {% else %}
-      Buraya Login Kısmını Koyacağız  
-      {% endif %}
  
-      
     </div>  
   </div>
   

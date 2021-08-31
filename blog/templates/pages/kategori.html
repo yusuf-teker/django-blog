@@ -28,17 +28,17 @@
   
 
 
-
+ <!--LISTVIEW KULLANDIGIM ICIN ?sayfa otomatikmen ?page'e dönüstü-->
 <!--PAGINATION-->
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-end">
 
     <!--egerki sayfa 1 ise önceki kısmı disable edelim-->
     <!--paginator zaten yazılar ile iliskiliydi-->
-    
-    {% if yazilar.has_previous %} <!--ilk sayfada degilizi-->
+
+    {% if page_obj.has_previous %} <!--ilk sayfada degilizi-->
     <li class="page-item ">
-      <a class="page-link" href="?sayfa={{ yazilar.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a><!--href'e girdigimiz kodla previous'a tıklaınca geri gidecek-->
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a><!--href'e girdigimiz kodla previous'a tıklaınca geri gidecek-->
     </li>
 
     {% else %}
@@ -49,8 +49,8 @@
       
     
     
-    {% if yazilar.paginator.num_pages  > 0 %}
-      <li class="page-item"><a class="page-link" href="#">{{ yazilar.number }}</a></li>
+    {% if page_obj.paginator.num_pages  > 0 %}
+      <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
     {% endif %}
       
     
@@ -58,13 +58,13 @@
 
 
     
-    {% if yazilar.has_next %}<!--Sonraki Sayfa-->
+    {% if page_obj.has_next %}<!--Sonraki Sayfa-->
     <li class="page-item">
-      <a class="page-link" href="?sayfa={{ yazilar.next_page_number }}">Next</a>
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
     </li>
 
     <li class="page-item"><!--Son Sayfa-->
-      <a class="page-link" href="?sayfa={{ yazilar.paginator.num_pages }}">Last</a>
+      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
     </li>
     {% else %}
     <li class="page-item disabled">

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{profil.username}} <!-- profil adında bir customusermodel dondurmustuk-->
+{% endblock title %}
+
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <div class="card-text">       
+                {% if profil.get_full_name == '' %}
+                Adı Soyadı: Girilmemiş.
+                {%else%}
+                Adı Soyadı: {{profil.get_full_name}}
+                {% endif %}   
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
+    
+    

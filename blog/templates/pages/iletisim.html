@@ -1,41 +1,22 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %} <!--güzel arayüz için-->
-
 {% block title %}ILETISIM{% endblock %} 
 
 
 
 {% block content %} 
-
-
 <form method="POST">{% csrf_token %} <!-- bu form bir request gönderir -->
     <!-- Post ile GET'in aksine sınırsız veri gönderebiliriz. Veri url kısmında değil variable olarak gönderilir-->
     <!--Veriyi views icindeki iletisim.py de request.POST olarak alabiliriz-->
-
     <!--{{ form }}-->  <!--form yerine form.as_p dersek formdaki şeyleri alt alta yapar -->
-
-  
-   
     {{ form|crispy}} <!-- crispy ile GUZEL BIR GORUNUM ELDE ETME-->
     <!--crispy ile aynı zamadna öğeyi denetle yapıp required kısmını silse bile boş gönderilen dataya izin vermez -->
-   
     <input type="submit" value="Gönder" class="btn btn-danger mt-3 mb-3"> <!-- Gönder buton üzerindeki isim -->
-   
-    
-   
-   
-   
-   
     <!--Sadece {{ form }} kullanarak tum alanları gosterebilriz ama arayuzu daha farklı kullanmak icin tek tek alttaki gibide kullanabiliriz
     {{ form.isim_soyisim.label }} -> {{ form.isim_soyisim }}<br>
     {{ form.email.label }} -> {{ form.email }}<br>
     {{ form.mesaj.label }} -> {{ form.mesaj }}
     -->
-
-</form>
-  
-
-        
+</form>      
 {% endblock %}
   

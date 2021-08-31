@@ -19,11 +19,17 @@
 
     <div class = 'container mt-3'> <!--Container Bası-->
       <div class ="row">
-        <div class = "col-sm-9"> <!-- sm small anlamında ekranı small olcegin altına indirirlerse bu satırdakiler alt alta gelecekBASTAN 9 YER KAPLIYOR -- 0-9  -->
+        <div 
+        {% if request.user.is_authenticated %} class = "col-sm-9" {% else %} class = "col-sm-12" {% endif %}> <!-- sm small anlamında ekranı small olcegin altına indirirlerse bu satırdakiler alt alta gelecekBASTAN 9 YER KAPLIYOR -- 0-9  -->
+          <!--Eger kullanıcı giriş yazmamışsa yazı kısımları tüm ekranı kaplasın (giris yapmadıgında side barı kaldırdıgımız icin bosluk kalmasın)-->
+
           <!--Her sayfanın contenti farklı bruaya gelecek-->
           {% block content %}{% endblock %}
+
         </div>
-        {% include 'components/sidebar.html' %}
+        {% if request.user.is_authenticated %}
+         {% include 'components/sidebar.html' %}
+        {%endif%}
     </div>
      <!--footer kısmımı components'a ekledim burda include edicem-->
      {% include 'components/footer.html' %}
@@ -31,6 +37,8 @@
   </div><!--Container Bitisi-->
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="{% static bootstrap.bundle.min.js %}" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   </body>
 </html>

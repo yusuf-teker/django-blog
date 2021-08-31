@@ -2,3 +2,6 @@ db.sqlite3
 __pycache__
 .vscode
 yazi_resimleri
+.env
+media
+prod.sqlite3

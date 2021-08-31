@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} <!--güzel arayüz için-->
+{% block title %}Giriş{% endblock %} 
+{% block content %} 
+
+
+
+<form method="POST" >{% csrf_token %}
+    <div style = "width:300px;" class= "container" >
+            {{ form|crispy}} 
+            <input type="submit" value="Giriş" class="btn btn-danger mt-3 mb-3"> <!-- Gönder buton üzerindeki isim -->
+    </div>
+</form>
+        
+{% endblock %}
+
+  

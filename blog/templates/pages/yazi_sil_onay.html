@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} <!--güzel arayüz için-->
+{% block title %}Silmek İstediğinize emin misiniz?{% endblock %} 
+
+{% block content %}  
+<form method="POST">{% csrf_token %}
+    
+    <p>Yazı silmeyi onaylıyor musunuz?</p>
+    <button type="button" class="btn btn-success mt-3 mb-3" > <a href="#" onclick="history.go(-1)">Hayır Silme</a></button>
+    <input type="submit" value="Evet Sil" class="btn btn-danger mt-3 mb-3">
+ </form>
+
+        
+{% endblock %}
+  

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %} <!--güzel arayüz için-->
+
+{% block title %}Sifre Değiştir{% endblock %} 
+
+{% block content %} 
+
+{% include 'components/message.html' %} <!--Mesaj varsa bastır -->
+
+<form method="POST" enctype = "multipart/form-data">{% csrf_token %}
+
+    {{ form|crispy}} 
+    <input type="submit" value="Şifre Değiştir" class="btn btn-danger mt-3 mb-3"> <!-- Gönder buton üzerindeki isim -->
+   
+</form>
+        
+{% endblock %}
+
+  
