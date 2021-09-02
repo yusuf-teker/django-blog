@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,17 +12,11 @@
     <title>{% block title %}{% endblock %} </title>
   </head>
   <body style="background-image: url('{% static 'img/1.jpg' %}');">
-
-    <!--navbar kısmımı components'a ekledim burda include edicem-->
     {% include 'components/navbar.html' %}
-
-    <div class = 'container mt-3'> <!--Container Bası-->
+    <div class = 'container mt-3'> 
       <div class ="row">
         <div 
-        {% if request.user.is_authenticated %} class = "col-sm-9" {% else %} class = "col-sm-12" {% endif %}> <!-- sm small anlamında ekranı small olcegin altına indirirlerse bu satırdakiler alt alta gelecekBASTAN 9 YER KAPLIYOR -- 0-9  -->
-          <!--Eger kullanıcı giriş yazmamışsa yazı kısımları tüm ekranı kaplasın (giris yapmadıgında side barı kaldırdıgımız icin bosluk kalmasın)-->
-
-          <!--Her sayfanın contenti farklı bruaya gelecek-->
+        {% if request.user.is_authenticated %} class = "col-sm-9" {% else %} class = "col-sm-12" {% endif %}> 
           {% block content %}{% endblock %}
 
         </div>
@@ -31,10 +24,9 @@
          {% include 'components/sidebar.html' %}
         {%endif%}
     </div>
-     <!--footer kısmımı components'a ekledim burda include edicem-->
      {% include 'components/footer.html' %}
-     
-  </div><!--Container Bitisi-->
+
+  </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="{% static bootstrap.bundle.min.js %}" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 

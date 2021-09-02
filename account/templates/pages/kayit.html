@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
-{% load crispy_forms_tags %} <!--güzel arayüz için-->
+{% load crispy_forms_tags %}
 
 {% block title %}Kayit{% endblock %} 
 
 {% block content %} 
 
-{% include 'components/message.html' %} <!--Mesaj varsa bastır -->
+{% include 'components/message.html' %} 
 
 <form method="POST">{% csrf_token %}
 
     {{ form|crispy}} 
-    <input type="submit" value="Kayıt Ol" class="btn btn-danger mt-3 mb-3"> <!-- Gönder buton üzerindeki isim -->
+    <input type="submit" value="Kayıt Ol" class="btn btn-danger mt-3 mb-3"> 
    
 </form>
         

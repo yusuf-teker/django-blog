@@ -1,7 +1,7 @@
 {% load kategori_list %}
-{% kategori_list as kategoriler  %} <!--kategori_list 'i kategoriler degiskeni olarak tutuyoruz -->
+{% kategori_list as kategoriler  %}
 
-<!--NAVBAR -> EN USTTEKI BOLUM -->
+<!--NAVBAR  -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="{% url 'anasayfa' %}">BLOG</a>
@@ -13,7 +13,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           {% for kategori in kategoriler %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'kategori' kategoriSlug=kategori.slug  %}">{{ kategori.isim }}</a> <!--url'imizin ismi 'kategori', birde kategoriSlug isteniyordu. o yüzden kategori içindeki slug'ı kategori.slug olarak gödnerdik-->
+            <a class="nav-link active" aria-current="page" href="{% url 'kategori' kategoriSlug=kategori.slug  %}">{{ kategori.isim }}</a> 
           </li>
           {% endfor %}
           
@@ -21,14 +21,14 @@
             
         </ul>
 
-        <form action="{% url 'anasayfa' %}" class="d-flex"> <!--formumuza bir action verelim-->
+        <form action="{% url 'anasayfa' %}" class="d-flex"> 
           <input class="form-control me-2" name='sorgu' type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
 
       </div>
 
-      {% if not request.user.is_authenticated %} <!-- Giriş Yapmamışsa GİRİŞ YAP BUTONU-->
+      {% if not request.user.is_authenticated %} 
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item active">      

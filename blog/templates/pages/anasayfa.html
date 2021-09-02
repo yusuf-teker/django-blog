@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Anasayfa{% endblock %} 
 
-{% block content %}<!-- CARDLARIMIZ-->
+{% block content %}
 
 {% for yazi in yazilar %}
 <div class="card-transparent mb-3">
@@ -16,10 +16,7 @@
       <div class="card-body" >
         <h5 class="card-title"><a href="{% url 'detay' slug=yazi.slug %}">{{ yazi.baslik }}</a></h5>
         <p class="card-text" >{{ yazi.icerik|safe|truncatechars_html:150 }}</p> 
-          <!--safe ekleyince editor kaynaklı<p> gibi şeyler çıkmasını engelliyor-->
-            <!--truncatechars_html:150 ilk 150 kelimeyi gösterir sonrasını .. olarak gosterir-->
         <p class="card-text"><small class="text-muted">{{ yazi.duzenlenme_tarihi }}</small></p>
-            <!-- |timesince eklersek tarih yerine ne kadar süre geçmiş onu gösterir-->
       </div>
     </div>
   </div>
@@ -35,13 +32,10 @@
 <!--PAGINATION-->
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-end">
-
-    <!--egerki sayfa 1 ise önceki kısmı disable edelim-->
-    <!--paginator zaten yazılar ile iliskiliydi-->
     
-    {% if yazilar.has_previous %} <!--ilk sayfada degilizi-->
+    {% if yazilar.has_previous %} 
     <li class="page-item ">
-      <a class="page-link" href="?sayfa={{ yazilar.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a><!--href'e girdigimiz kodla previous'a tıklaınca geri gidecek-->
+      <a class="page-link" href="?sayfa={{ yazilar.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a>
     </li>
     {% else %}
     <li class="page-item disabled">
@@ -54,16 +48,16 @@
       <li class="page-item"><a class="page-link" href="#">{{ yazilar.number }}</a></li>
     {% endif %}
     
-    {% if yazilar.has_next %}<!--Sonraki Sayfa-->
+    {% if yazilar.has_next %}
     <li class="page-item">
       <a class="page-link" href="?sayfa={{ yazilar.next_page_number }}">Next</a>
     </li>
-    <li class="page-item"><!--Son Sayfa-->
+    <li class="page-item">
       <a class="page-link" href="?sayfa={{ yazilar.paginator.num_pages }}">Last</a>
     </li>
     {% else %}
     <li class="page-item disabled">
-      <a class="page-link" href="#">Next</a><!--burda href verince sorun olıyor-->
+      <a class="page-link" href="#">Next</a>
     </li>
     {% endif %}
   </ul>

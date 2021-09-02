@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Yazilarim {% endblock %}  <!--title sekmenin üstünde yazan yer-->
+{% block title %} Yazilarim {% endblock %}
 
 {% block content %}
 <table class="table table-striped">
@@ -30,34 +30,13 @@
     {% endfor %}
   </table>
  
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--PAGINATION-->
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-end">
-
-    <!--egerki sayfa 1 ise önceki kısmı disable edelim-->
-    <!--paginator zaten yazılar ile iliskiliydi-->
     
-    {% if yazilar.has_previous %} <!--ilk sayfada degilizi-->
+    {% if yazilar.has_previous %} 
     <li class="page-item ">
-      <a class="page-link" href="?sayfa={{ yazilar.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a><!--href'e girdigimiz kodla previous'a tıklaınca geri gidecek-->
+      <a class="page-link" href="?sayfa={{ yazilar.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a>
     </li>
     {% else %}
     <li class="page-item disabled">
@@ -73,16 +52,16 @@
     
 
     
-    {% if yazilar.has_next %}<!--Sonraki Sayfa-->
+    {% if yazilar.has_next %}
     <li class="page-item">
       <a class="page-link" href="?sayfa={{ yazilar.next_page_number }}">Next</a>
     </li>
-    <li class="page-item"><!--Son Sayfa-->
+    <li class="page-item">
       <a class="page-link" href="?sayfa={{ yazilar.paginator.num_pages }}">Last</a>
     </li>
     {% else %}
     <li class="page-item disabled">
-      <a class="page-link" href="#">Next</a><!--burda href verince sorun olıyor-->
+      <a class="page-link" href="#">Next</a>
     </li>
     {% endif %}
        

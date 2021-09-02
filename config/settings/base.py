@@ -3,15 +3,11 @@ from pathlib import Path
 import environ
 
 
-env = environ.Env() #sayfama environment variable icindeki degiskenleri cekebilmeye yara
-#environ.Env.read_env()
-    #otomatik olarak manage.py nerede oldugunu saptar .env'i bulur ve bu environment degiskenlerini buradan okur
-    #Secret kısmı yukarı aldım burda env ile koda ulascaz
-
+env = environ.Env() 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-environ.Env.read_env(os.path.join(BASE_DIR,'.env')) #Settingsleri development ve production olarak ayırdıktan sonra değiştirdik
+environ.Env.read_env(os.path.join(BASE_DIR,'.env')) 
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -40,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'blog',
-    #3.parti applerim
+    #3.party
     'ckeditor',
     'crispy_forms',
     
@@ -105,12 +101,12 @@ AUTH_USER_MODEL = 'account.CustomUserModel'
 MEDIA_URL = '/media/'
     
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
-    #media dosyamızın konumu, base_dir manage.py'in oldugu klasör
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = '/'
-    #login isleminden sonra anasayfaya git
+
 
 
 #gmail_send/settings.py
@@ -127,8 +123,8 @@ DEFAULT_FROM_EMAIL = 'y.teker.1907.1907@gmail.com'
 #LOGGING
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers':False, #jangonun default icindeki loggerları kaldırma
-    'formatters': { #belli bir formatta log almak istersek
+    'disable_existing_loggers':False, 
+    'formatters': { 
         'basit_ifade': {
             'format':'{asctime} {levelname} {message} {name}',
             'style': '{'

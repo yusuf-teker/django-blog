@@ -8,12 +8,8 @@ def yorum_sil(request, id):
 
     yorum = get_object_or_404(YorumModel, id = id)
     if yorum.yazan == request.user or yorum.yazi.yazar == request.user:
-        #yorum yazansam veya yoruumun oldugu icerigin sahibiysem
         yorum.delete()
-         
-        #message
         messages.success(request, 'Yorum başarıyla silindi.')
-
         return redirect('detay', slug = yorum.yazi.slug)
      
     return redirect('anasayfa') 

@@ -8,13 +8,9 @@ def kayit(request):
     if request.method == 'POST':
         form = KayitFormu(request.POST,)
         if form.is_valid():
-            form.save() #Kayit işlemi tamamlandı.
-
-            #Kayit oldutan sonra kullanıcı direkt olarak sayfaya girdirelim
-                #once bilgilerini alalım
+            form.save() 
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
-            #dogrulama yaptıktan sonra
             user = authenticate(username=username, password=password)
             login(request,user)
             return redirect('anasayfa')

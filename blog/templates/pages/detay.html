@@ -5,10 +5,10 @@
 {% block content %}
 
 
-<h3 class="card-title" style="text-align: center;">{{yazi.baslik}}</h3>         <!--BAŞLIK -->
+<h3 class="card-title" style="text-align: center;">{{yazi.baslik}}</h3>
 
 
-<div class="card-transparent mb-3"> <!--RESİM -->
+<div class="card-transparent mb-3">
   <div class="row g-0">
     <div class="class=col d-flex justify-content-center mt-4">
       <img src="{{ yazi.resim.url }}" class="img-fluid rounded-start" alt="..."  style=" height: auto; 
@@ -18,18 +18,16 @@
     </div>
   </div>
 </div>
-<!------------------------------------------------------------------------------------------>
+
 <div class="card-transparent mb-3"> 
   <div class="row g-1">
     <div class="col-md-12 ">
       <div class="card-body">
         
-        <p class="card-text"> {{ yazi.icerik|safe }}</p>                   <!--İÇERİK -->
-          <!--safe ekleyince editor kaynaklı<p> gibi şeyler çıkmasını engelliyor-->
-            <!--truncatechars_html:150 ilk 150 kelimeyi gösterir sonrasını .. olarak gosterir-->
+        <p class="card-text"> {{ yazi.icerik|safe }}</p> 
         <p class="card-text">
           <small class="text-muted">
-            {{ yazi.duzenlenme_tarihi }}           <!--SON GUNCELLEME TARIHI --> <br>
+            {{ yazi.duzenlenme_tarihi }} <br>
             Yazar: <a href="{% url 'profil' username=yazi.yazar.username %}">{{yazi.yazar.username}}</a>   
                 
             {% if request.user == yazi.yazar %}
@@ -41,25 +39,18 @@
             
           </small>
         </p>
-            <!-- |timesince eklersek tarih yerine ne kadar süre geçmiş onu gösterir-->
+    
       </div>
     </div>
 
   </div>
 </div>
 
-<!------------------------------------------------------------------------------------------>
-
-
-
-
-
-<!------------------------------------------------------------------------------------------>
 
 <h5>Yorumlar</h5>
 
 
-{% if request.user.is_authenticated %}  <!-- YORUM EKLEME -->
+{% if request.user.is_authenticated %} 
 <form action="" method="POST" > {% csrf_token %}  
   {{ yorum_ekle_form|crispy }}
   <input type="submit" value="Yorum Yap" class="btn btn-danger mt-3 mb-3">
@@ -71,11 +62,10 @@
 
   {% include 'components/message.html' %}
 
-{% for yorum in yorumlar %} <!--detay.py de context içinde yorumları gönderdim-->
-<div class="card-transparent">
+{% for yorum in yorumlar %} 
     <div class="card-body" style="display:flex;flex-direction: row;background-color: rgba(245, 245, 245, 0.2);">
       <div>
-        {% if yorum.yazan.avatar %} <!--yorum icinde yazan var o yazan kisinin avatarı varmı-->
+        {% if yorum.yazan.avatar %}
             <img src="{{ yorum.yazan.avatar.url }}"  class="rounded" class="pt-4" width="75px" height="75px">
         {% else %}
             <img src="{% static 'img/no-avatar.jpg' %}"  class="rounded" class="pt-4" width="75px" height="75px">
