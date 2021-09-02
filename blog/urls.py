@@ -35,7 +35,7 @@ urlpatterns = [
         #2.par view 'ımız
         #3.par html'de kullaacagımız kısım
 
-    path('yazi-guncelle/<slug:slug>', YaziGuncelleUpdateView.as_view(), name = 'yazi-guncelle' ),
+    path('yazi-guncelle/<slug:slug>', YaziGuncelleUpdateView.as_view(), name='yazi-guncelle'),
         #guncellenecek yazıyı slug olarak istiycez
     
     
@@ -52,7 +52,7 @@ urlpatterns = [
     path('hakkinda', TemplateView.as_view(#templateViwe classbased view'dur ve bunu override etmek istersek as_view kullanabiliriz
         template_name = 'pages/hakkinda.html' #template_name'yi override edelim
 
-    ), name='hakkimda'), 
+    ), name='hakkinda'), 
 
     #RedirectView Kullanımı
     path('yonlendir',RedirectView.as_view(

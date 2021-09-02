@@ -10,6 +10,7 @@ pillow = "*"
 django-ckeditor = "*"
 django-crispy-forms = "*"
 django-environ = "*"
+sentry-sdk = "==1.1.0"
 
 [dev-packages]
 

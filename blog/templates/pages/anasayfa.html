@@ -4,15 +4,18 @@
 {% block content %}<!-- CARDLARIMIZ-->
 
 {% for yazi in yazilar %}
-<div class="card mb-3">
-  <div class="row g-0">
+<div class="card-transparent mb-3">
+  <div class="row g-0" style="background-color: rgba(243, 243, 243, 0.5); border: 5px solid;">
     <div class="col-md-4">
-      <img src="{{ yazi.resim.url }}" class="img-fluid rounded-start" alt="...">
+      <img src="{{ yazi.resim.url }}" class="img-fluid rounded-start" alt="..." style=" height: auto; 
+      width: auto; 
+      min-height: 200px;
+      max-width: 300px; ">
     </div>
     <div class="col-md-8">
-      <div class="card-body">
+      <div class="card-body" >
         <h5 class="card-title"><a href="{% url 'detay' slug=yazi.slug %}">{{ yazi.baslik }}</a></h5>
-        <p class="card-text">{{ yazi.icerik|safe|truncatechars_html:150 }}</p> 
+        <p class="card-text" >{{ yazi.icerik|safe|truncatechars_html:150 }}</p> 
           <!--safe ekleyince editor kaynaklı<p> gibi şeyler çıkmasını engelliyor-->
             <!--truncatechars_html:150 ilk 150 kelimeyi gösterir sonrasını .. olarak gosterir-->
         <p class="card-text"><small class="text-muted">{{ yazi.duzenlenme_tarihi }}</small></p>

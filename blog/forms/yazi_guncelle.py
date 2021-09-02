@@ -5,7 +5,6 @@ from blog.models import YazilarModel
 class YaziGuncelleFormModel(forms.ModelForm):
     class Meta:
         model = YazilarModel
-
         #Butun bu fieldları yazmak yerine almayacağımız fieldları yazabilriz
         #field = ('resim','baslik','icerik','kategoriler')
         exclude = ('slug','yazar') # bu ikisi haric hepsini al

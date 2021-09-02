@@ -3,15 +3,28 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="card mb-3">
+
+
+<h3 class="card-title" style="text-align: center;">{{yazi.baslik}}</h3>         <!--BAŞLIK -->
+
+
+<div class="card-transparent mb-3"> <!--RESİM -->
   <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{ yazi.resim.url }}" class="img-fluid rounded-start" alt="...">
+    <div class="class=col d-flex justify-content-center mt-4">
+      <img src="{{ yazi.resim.url }}" class="img-fluid rounded-start" alt="..."  style=" height: auto; 
+      width: auto; 
+      min-height: 300px;
+      max-width: 450px; ">
     </div>
-    <div class="col-md-8">
+  </div>
+</div>
+<!------------------------------------------------------------------------------------------>
+<div class="card-transparent mb-3"> 
+  <div class="row g-1">
+    <div class="col-md-12 ">
       <div class="card-body">
-        <h5 class="card-title">{{yazi.baslik}}</h5>                       <!--BAŞLIK -->
-        <p class="card-text">{{ yazi.icerik|safe }}</p>                   <!--İÇERİK -->
+        
+        <p class="card-text"> {{ yazi.icerik|safe }}</p>                   <!--İÇERİK -->
           <!--safe ekleyince editor kaynaklı<p> gibi şeyler çıkmasını engelliyor-->
             <!--truncatechars_html:150 ilk 150 kelimeyi gösterir sonrasını .. olarak gosterir-->
         <p class="card-text">
@@ -31,19 +44,25 @@
             <!-- |timesince eklersek tarih yerine ne kadar süre geçmiş onu gösterir-->
       </div>
     </div>
+
   </div>
 </div>
+
+<!------------------------------------------------------------------------------------------>
+
+
+
+
+
+<!------------------------------------------------------------------------------------------>
 
 <h5>Yorumlar</h5>
 
 
 {% if request.user.is_authenticated %}  <!-- YORUM EKLEME -->
-<form action="" method="POST"> {% csrf_token %}  
-{{ yorum_ekle_form|crispy }}
-  
+<form action="" method="POST" > {% csrf_token %}  
+  {{ yorum_ekle_form|crispy }}
   <input type="submit" value="Yorum Yap" class="btn btn-danger mt-3 mb-3">
-
-
 </form>
 
 {% else %}
@@ -52,10 +71,9 @@
 
   {% include 'components/message.html' %}
 
-
 {% for yorum in yorumlar %} <!--detay.py de context içinde yorumları gönderdim-->
-<div class="card">
-    <div class="card-body" style="display:flex;flex-direction: row;">
+<div class="card-transparent">
+    <div class="card-body" style="display:flex;flex-direction: row;background-color: rgba(245, 245, 245, 0.2);">
       <div>
         {% if yorum.yazan.avatar %} <!--yorum icinde yazan var o yazan kisinin avatarı varmı-->
             <img src="{{ yorum.yazan.avatar.url }}"  class="rounded" class="pt-4" width="75px" height="75px">
